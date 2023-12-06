@@ -3,5 +3,6 @@ export const PUBLIC_ROUTES = {
 }
 
 export const PRIVATE_ROUTES = {
-    dashboard: "dashboard"
+    dashboard: "dashboard",
+    settings: "settings"
 }

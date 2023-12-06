@@ -12,15 +12,14 @@ export default function useFetchAndLoader(){
 
         let result = {} as AxiosResponse<any>
         
-        // try{
+        try{
             result = await axiosCall.call
-        // }catch(err){
-        //     return Promise.reject(err)
-        // }finally{
-        //     setLoading(false);
-        // } 
+        }catch(err){
+            return Promise.reject(err)
+        }finally{
+            setLoading(false);
+        } 
 
-        setLoading(false);
 
         return result.data;
     }

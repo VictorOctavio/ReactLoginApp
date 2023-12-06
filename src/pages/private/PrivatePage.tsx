@@ -1,11 +1,26 @@
+import "./privatepage.css";
 import { Routes, Route } from "react-router-dom";
+
+// Components
+import { NavbarPanel } from "@/components/NabarPanel/NavbarPanel";
+import { SettingsPage } from "./SettingsPage/SettingsPage";
+import { DashboardPage } from "./DashboradPage/DashboardPage";
 
 function PrivatePage() {
   return (
-    <Routes>
-        <Route path="/" element={<p>dashboard</p>} />
-        <Route path="add" element={<p>add car</p>} />
-    </Routes>
+    <div className="privatePage">
+
+      <NavbarPanel />
+      
+      <div className="privatePageContent">
+        <Routes>
+          <Route path="" element={<DashboardPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+        </Routes>
+      </div>
+    
+    </div>
+    
   )
 }
 

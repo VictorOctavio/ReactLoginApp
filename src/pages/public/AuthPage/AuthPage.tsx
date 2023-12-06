@@ -21,7 +21,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
         
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
             <img
-              src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5e2ffa94988047.5e8c988fc2f25.png"
+              src="/logotype.png"
               className="w-full"
               alt="Phone image" 
               />
@@ -37,9 +37,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({
         
               <div className="relative mb-6">
                 <input
-                  type="text"
+                  type="email"
                   className=" block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                 
                   placeholder="Email address" 
                   name="email"
                   onChange={handlerChangeUser}

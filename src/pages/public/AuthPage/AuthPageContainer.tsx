@@ -9,6 +9,15 @@ import { loginUserService } from "@/services/auth.service"
 import useFetchAndLoader from '@/hooks/useFetchAndLoader'
 import { userAdapter } from '@/adapters/user.adapter'
 
+// Redux
+import { useDispatch } from "react-redux"
+import { signin, signup } from '@/redux/user/UserSlice'
+
+// React router dom
+import { useNavigate } from 'react-router-dom'
+import { PRIVATE_ROUTES } from '@/models/Routes.model'
+import { managerNotifications } from '@/components/Toast/ReactToast'
+
 export default function AuthPageContainer() {
 
   // States
@@ -20,8 +29,10 @@ export default function AuthPageContainer() {
     login
   });
 
-  // Initialize useFectch 
+  // Initialize useFectch & Redux
   const { loading, callEndpoint  } = useFetchAndLoader();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Handlers 
   const handlerSetLogin = () => {
@@ -44,14 +55,27 @@ export default function AuthPageContainer() {
 
     const callServie = loginUserService(authUser);
     const data = await callEndpoint(callServie);
-
-
     const user = userAdapter(data);
 
-    console.log('first', user)
-    if(forgotPassowrd) return alert("forgot passowrd")
-    if(login) return alert("login")
-    alert("Registro")
+    if(forgotPassowrd) return;
+    
+    if(!validateInput()) return;
+
+    if(login) dispatch(signin(user));
+    else dispatch(signup(user));
+
+    navigate(`/${PRIVATE_ROUTES.dashboard}`, {
+      replace: true
+    })
+  }
+
+  const validateInput= () => {
+    if(!authUser.email.trim() || !authUser.password.trim() ){
+      managerNotifications.error("Campos Requeridos")
+      return false;
+    }
+
+    return true;
   }
 
   return (

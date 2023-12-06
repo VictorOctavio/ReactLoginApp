@@ -5,6 +5,7 @@ export const userAdapter = (user: any): UserModel => {
         email: user.email,
         name: user.name,
         phone: user.phone,
-        geo: user.address.geo     
+        geo: user.address.geo,
+        token: "3sadf89798hhghg7ds2349132hohasudghsh9132098123-"
     }
 }
