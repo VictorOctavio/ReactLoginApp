@@ -24,7 +24,7 @@ export default function AuthPageContainer() {
   const [login, setLogin] = useState<boolean>(true)
   const [forgotPassowrd, setForgotPassowrd] = useState<boolean>(false)
   const [authUser, setAuthUser] = useState<AuthModel>({
-    email: "",
+    email: "Julianne.OConner@kory.org",
     password: "",
     login
   });
@@ -53,13 +53,19 @@ export default function AuthPageContainer() {
 
     e.preventDefault();
 
+    // Validate inputs
+    if(!validateInput()) return;
+
     const callServie = loginUserService(authUser);
     const data = await callEndpoint(callServie);
-    const user = userAdapter(data);
+
+    // verify user found
+    if(data.length <= 0) return managerNotifications.error("User not found");
+
+    const user = userAdapter(data[0]);
 
     if(forgotPassowrd) return;
     
-    if(!validateInput()) return;
 
     if(login) dispatch(signin(user));
     else dispatch(signup(user));
@@ -69,9 +75,14 @@ export default function AuthPageContainer() {
     })
   }
 
+  const signinWithGoogle = () => {
+    managerNotifications.error("This function is disabled")
+    return;
+  }
+
   const validateInput= () => {
     if(!authUser.email.trim() || !authUser.password.trim() ){
-      managerNotifications.error("Campos Requeridos")
+      managerNotifications.error("All fields are required ")
       return false;
     }
 
@@ -87,6 +98,8 @@ export default function AuthPageContainer() {
       handlerChangeUser={handleChangeUser}
       hanlderSubmit={hanlderSubmit}
       loading={loading}
+      signinWithGoogle={signinWithGoogle}
+      authUser={authUser}
     />
   )
 }

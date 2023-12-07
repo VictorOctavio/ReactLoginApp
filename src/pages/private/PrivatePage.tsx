@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import { NavbarPanel } from "@/components/NabarPanel/NavbarPanel";
 import { SettingsPage } from "./SettingsPage/SettingsPage";
 import { DashboardPage } from "./DashboradPage/DashboardPage";
+import { NewMessagePage } from "./NewMessagePage/NewMessagePage";
+import { ListMessagePage } from "./ListMessagePage/ListMessagePage";
 
 function PrivatePage() {
   return (
@@ -15,6 +17,8 @@ function PrivatePage() {
       <div className="privatePageContent">
         <Routes>
           <Route path="" element={<DashboardPage />} />
+          <Route path="new-message" element={<NewMessagePage />} />
+          <Route path="messages" element={<ListMessagePage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Routes>
       </div>

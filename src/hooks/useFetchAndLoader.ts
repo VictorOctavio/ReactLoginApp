@@ -20,7 +20,6 @@ export default function useFetchAndLoader(){
             setLoading(false);
         } 
 
-
         return result.data;
     }
 

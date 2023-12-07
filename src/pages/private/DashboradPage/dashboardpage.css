@@ -4,7 +4,7 @@
     overflow: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 100px 1fr;
     gap: 1em;
     padding: 1em;
 }
@@ -14,7 +14,43 @@
     border-radius: .2em;
     padding: .5em;
 }
+ 
+.dashboardPageCard-sales{
+    grid-column: 1/4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    gap: .5em;
+    flex-wrap: nowrap;
+    overflow: auto;
+    overflow-y: hidden;
+}
 
 .dashboardPageCardGrafico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column: 1/3;
+}
+
+/*  */
+.dashboardPageCardClients{
+    background-color: rgba(0, 0, 0, 0.062);
+    padding: 1em;
+}
+
+/* Media queries */
+@media (max-width:900px) {
+    .dashboardPage{
+        grid-template-rows: 100px auto;
+    }
+
+    .dashboardPageCardGrafico{
+        grid-column: 1/4;
+    }
+
+    .dashboardPageCardClients{
+        grid-column: 1/4;
+    }
 }
